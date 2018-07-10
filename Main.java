@@ -16,23 +16,25 @@ public class Main {
             System.out.println(" ");
         }
     }
-// Method is printing single line of sudoku.
+
+    // Method is printing single line of sudoku.
     static void showSudoku1() {
         for (int sudokuSingleElement : sudoku1) {
             System.out.print(sudokuSingleElement + " ");
         }
     }
-// Method is generating in simple way single line of sudoku.
+
+    // Method is generating in simple way single line of sudoku.
     static void simpleGenerateSingleLineSudoku() {
         Random random = new Random();
         for (int i = 0; i < 9; i++) {
-            sudoku1[i] = random.nextInt(9) + 1;
+            sudoku[0][i] = random.nextInt(9) + 1;
             for (int j = 1; j <= 9; j++) {
                 if (i == 0) {
                     continue;
                 } else {
                     if (i >= j) {
-                        if (sudoku1[i] == sudoku1[i - j]) {
+                        if (sudoku[0][i] == sudoku[0][i - j]) {
                             i--;
                         }
                     }
@@ -40,7 +42,29 @@ public class Main {
             }
         }
     }
-// Method is generating single line of sudoku game in step by step.
+
+    static void simpleGenerateSudoku() {
+        Random random = new Random();
+        for (int j = 0; j < 9; j++) {
+            for (int i = 0; i < 9; i++) {
+                sudoku[j][i] = random.nextInt(9) + 1;
+                for (int w = 1; w < 9; w++) {
+                    if (i == 0 && j == 0) {
+                        continue;
+                    } else {
+                        if (i >= w && j >= w) {
+                            if ((sudoku[j][i] == sudoku[j - w][i - w]) || (sudoku[j][i] == sudoku[j][i - w]) || (sudoku[j][i] == sudoku[j - w][i])) {
+                                i--;
+                                j--;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Method is generating single line of sudoku game in step by step.
     static void generateSingleLineSudoku() {
         Random random2 = new Random();
         for (int i = 0; i < 9; i++) {
@@ -98,16 +122,18 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        /*
         Random random1 = new Random();
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 sudoku[i][j] = random1.nextInt(9) + 1;
             }
         }
+        */
         //showSudoku();
         //generateSingleLineSudoku();
         simpleGenerateSingleLineSudoku();
-        showSudoku1();
+        showSudoku();
 
 
     }
