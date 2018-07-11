@@ -15,8 +15,12 @@ public class Main {
             }
             System.out.println(" ");
         }
+        System.out.println();
     }
-
+    static void testValue(int i, int j, int w) {
+        System.out.println("i = " + i + ", j = " + j + ", w = " + w);
+        System.out.println();
+    }
     // Method is printing single line of sudoku.
     static void showSudoku1() {
         for (int sudokuSingleElement : sudoku1) {
@@ -50,19 +54,31 @@ public class Main {
                 sudoku[j][i] = random.nextInt(9) + 1;
                 for (int w = 1; w < 9; w++) {
                     if (i == 0 && j == 0) {
-                        continue;
+
+                        break;
                     } else {
-                        if (i >= w && j >= w) {
-                            if ((sudoku[j][i] == sudoku[j - w][i - w]) || (sudoku[j][i] == sudoku[j][i - w]) || (sudoku[j][i] == sudoku[j - w][i])) {
-                                i--;
-                                j--;
+                        if (i > w || j > w) {
+                            showSudoku();
+                            testValue(i,j,w);
+                            if (i == 0) {
+                                if ((sudoku[j][i] == sudoku[j - w][i])) {
+                                    i--;
+                                    break;
+                                }
+                            } else {
+                                if ((sudoku[j][i] == sudoku[j][i - w])) { //|| (sudoku[j][i] == sudoku[j-w][i])) {
+                                    i--;
+                                    break;
+                                }
                             }
+
                         }
                     }
                 }
             }
         }
     }
+
 
     // Method is generating single line of sudoku game in step by step.
     static void generateSingleLineSudoku() {
@@ -132,7 +148,8 @@ public class Main {
         */
         //showSudoku();
         //generateSingleLineSudoku();
-        simpleGenerateSingleLineSudoku();
+        //simpleGenerateSingleLineSudoku();
+        simpleGenerateSudoku();
         showSudoku();
 
 
