@@ -7,16 +7,16 @@ author: Adam Czajkowski
 date: July 2018
 */
 public class Main {
-/*
-    squares of sudoku:
+    /*
+        squares of sudoku:
 
-    A | B | C
-    ---------
-    D | E | F
-    ---------
-    G | H | I
+        A | B | C
+        ---------
+        D | E | F
+        ---------
+        G | H | I
 
-*/
+    */
     static int sudoku[][] = new int[9][9];
     static int sudokuA[][] = new int[3][3];
     static int sudokuSingleLine[] = new int[9];
@@ -52,6 +52,7 @@ public class Main {
 
     // Showing sudoku table in 9x9 area
     static void showSudoku() {
+        System.out.println(" ");
         for (int[] sudokuLine : sudoku) {
             for (int element : sudokuLine) {
                 if (element <= 9)
@@ -59,7 +60,7 @@ public class Main {
             }
             System.out.println(" ");
         }
-        System.out.println();
+        System.out.println("\n");
     }
 
     static void testValue(int row, int column, int tmp) {
@@ -68,9 +69,9 @@ public class Main {
     }
 
     static void detectionElementOfSudoku(int row, int column) {
-        detectionElementOfSudokuInRows(row,column);
-        detectionElementOfSudokuInColumn(row,column);
-        detectionElementsOfSudokuInSquares(row,column);
+        detectionElementOfSudokuInRows(row, column);
+        detectionElementOfSudokuInColumn(row, column);
+        detectionElementsOfSudokuInSquares(row, column);
     }
 
     // Method to generate 3 free squares A, E, I of sudoku.
@@ -88,57 +89,14 @@ public class Main {
                 }
             }
         }
-        // square B:
-        for (int row = 0; row < 3; row++) {
-            for (int column = 3; column <= 5; column++) {
-                sudoku[row][column] = random.nextInt(9) + 1;
-                if ((sudokuElementExistBsquare[sudoku[row][column]] != true) && (sudokuElementExistDcolumn[sudoku[row][column]] != true) && (sudokuElementExistArow[sudoku[row][column]] != true)) {
-                    detectionElementOfSudoku(row, column);
-                    continue;
-                }
-                else if ((sudokuElementExistBsquare[sudoku[row][column]] != true) && (sudokuElementExistEcolumn[sudoku[row][column]] != true) && (sudokuElementExistArow[sudoku[row][column]] != true)) {
-                    detectionElementOfSudoku(row, column);
-                    continue;
-                }
-                else if ((sudokuElementExistBsquare[sudoku[row][column]] != true) && (sudokuElementExistFcolumn[sudoku[row][column]] != true) && (sudokuElementExistArow[sudoku[row][column]] != true)) {
-                    detectionElementOfSudoku(row, column);
-                    continue;
-                }
-                else if ((sudokuElementExistBsquare[sudoku[row][column]] != true) && (sudokuElementExistDcolumn[sudoku[row][column]] != true) && (sudokuElementExistBrow[sudoku[row][column]] != true)) {
-                    detectionElementOfSudoku(row, column);
-                    continue;
-                }
-                else if ((sudokuElementExistBsquare[sudoku[row][column]] != true) && (sudokuElementExistEcolumn[sudoku[row][column]] != true) && (sudokuElementExistBrow[sudoku[row][column]] != true)) {
-                    detectionElementOfSudoku(row, column);
-                    continue;
-                }
-                else if ((sudokuElementExistBsquare[sudoku[row][column]] != true) && (sudokuElementExistFcolumn[sudoku[row][column]] != true) && (sudokuElementExistBrow[sudoku[row][column]] != true)) {
-                    detectionElementOfSudoku(row, column);
-                    continue;
-                }
-                else if ((sudokuElementExistBsquare[sudoku[row][column]] != true) && (sudokuElementExistDcolumn[sudoku[row][column]] != true) && (sudokuElementExistCrow[sudoku[row][column]] != true)) {
-                    detectionElementOfSudoku(row, column);
-                    continue;
-                }
-                else if ((sudokuElementExistBsquare[sudoku[row][column]] != true) && (sudokuElementExistEcolumn[sudoku[row][column]] != true) && (sudokuElementExistCrow[sudoku[row][column]]!= true)) {
-                    detectionElementOfSudoku(row, column);
-                    continue;
-                }
-                else if ((sudokuElementExistBsquare[sudoku[row][column]] != true) && (sudokuElementExistFcolumn[sudoku[row][column]] != true) && (sudokuElementExistCrow[sudoku[row][column]]!= true)) {
-                    detectionElementOfSudoku(row, column);
-                    continue;
-                } else {
-                    column--;
-                }
 
-            }
-        }
         // square E:
         for (int row = 3; row < 6; row++) {
             for (int column = 3; column < 6; column++) {
                 sudoku[row][column] = random.nextInt(9) + 1;
                 if (sudokuElementExistEsquare[sudoku[row][column]] != true) {
                     detectionElementOfSudoku(row, column);
+                    //sudokuElementExistEsquare[sudoku[row][column]] = true;
                     continue;
                 } else {
                     column--;
@@ -150,7 +108,7 @@ public class Main {
             for (int column = 6; column < 9; column++) {
                 sudoku[row][column] = random.nextInt(9) + 1;
                 if (sudokuElementExistIsquare[sudoku[row][column]] != true) {
-                    detectionElementOfSudoku(row,column);
+                    detectionElementOfSudoku(row, column);
                     continue;
                 } else {
                     column--;
@@ -158,6 +116,62 @@ public class Main {
             }
         }
     }
+    static void generateOtherSquares() {
+        Random random = new Random();
+        // square B:
+        for (int row = 0; row <= 2; row++) {
+            for (int column = 3; column <= 5; column++) {
+                for (int tmp = 1; tmp <= 99; tmp++) {
+                    sudoku[row][column] = random.nextInt(9) + 1;
+                    System.out.println("row = " + row + ", column = " + column + ", val = " + sudoku[row][column]);
+                    if (((sudokuElementExistBsquare[sudoku[row][column]] != true) && (sudokuElementExistDcolumn[sudoku[row][column]] != true)) && (sudokuElementExistArow[sudoku[row][column]] != true)) {
+                        detectionElementOfSudoku(row, column);
+                        System.out.println("Liczba zapisana, probuje dalej");
+                        break;
+                    } else if (((sudokuElementExistBsquare[sudoku[row][column]] != true) && (sudokuElementExistEcolumn[sudoku[row][column]] != true)) && (sudokuElementExistArow[sudoku[row][column]] != true)) {
+                        detectionElementOfSudoku(row, column);
+                        System.out.println("Liczba zapisana, probuje dalej");
+                        break;
+                    } else if (((sudokuElementExistBsquare[sudoku[row][column]] != true) && (sudokuElementExistFcolumn[sudoku[row][column]] != true)) && (sudokuElementExistArow[sudoku[row][column]] != true)) {
+                        detectionElementOfSudoku(row, column);
+                        System.out.println("Liczba zapisana, probuje dalej");
+                        break;
+                    } else if (((sudokuElementExistBsquare[sudoku[row][column]] != true) && (sudokuElementExistDcolumn[sudoku[row][column]] != true)) && (sudokuElementExistBrow[sudoku[row][column]] != true)) {
+                        detectionElementOfSudoku(row, column);
+                        System.out.println("Liczba zapisana, probuje dalej");
+                        break;
+                    } else if (((sudokuElementExistBsquare[sudoku[row][column]] != true) && (sudokuElementExistEcolumn[sudoku[row][column]] != true)) && (sudokuElementExistBrow[sudoku[row][column]] != true)) {
+                        detectionElementOfSudoku(row, column);
+                        System.out.println("Liczba zapisana, probuje dalej");
+                        break;
+                    } else if (((sudokuElementExistBsquare[sudoku[row][column]] != true) && (sudokuElementExistFcolumn[sudoku[row][column]] != true)) && (sudokuElementExistBrow[sudoku[row][column]] != true)) {
+                        detectionElementOfSudoku(row, column);
+                        System.out.println("Liczba zapisana, probuje dalej");
+                        break;
+                    } else if (((sudokuElementExistBsquare[sudoku[row][column]] != true) && (sudokuElementExistDcolumn[sudoku[row][column]] != true)) && (sudokuElementExistCrow[sudoku[row][column]] != true)) {
+                        detectionElementOfSudoku(row, column);
+                        System.out.println("Liczba zapisana, probuje dalej");
+                        break;
+                    } else if (((sudokuElementExistBsquare[sudoku[row][column]] != true) && (sudokuElementExistEcolumn[sudoku[row][column]] != true)) && (sudokuElementExistCrow[sudoku[row][column]] != true)) {
+                        detectionElementOfSudoku(row, column);
+                        System.out.println("Liczba zapisana, probuje dalej");
+                        break;
+                    } else if (((sudokuElementExistBsquare[sudoku[row][column]] != true) && (sudokuElementExistFcolumn[sudoku[row][column]] != true)) && (sudokuElementExistCrow[sudoku[row][column]] != true)) {
+                        detectionElementOfSudoku(row, column);
+                        System.out.println("Liczba zapisana, probuje dalej");
+                        break;
+                    } else {
+                        if ((row >= 3 && row <= 5) && (column >= 3 && column <= 5))
+                            System.out.println("Liczba zapisana, probuje dalej");
+                                column--;
+                                break;
+                    }
+                }
+            }
+        }
+
+    }
+
     static void detectionElementOfSudokuInColumn(int row, int column) {
 
         switch (column) {
@@ -244,7 +258,7 @@ public class Main {
         }
         // square E:
         else if ((row >= 3 && row <= 5) && (column >= 3 && column <= 5)) {
-            sudokuElementExistDsquare[sudoku[row][column]] = true;
+            sudokuElementExistEsquare[sudoku[row][column]] = true;
         }
         // square F:
         else if ((row >= 3 && row <= 5) && (column >= 6 && column <= 8)) {
@@ -267,23 +281,54 @@ public class Main {
     // Showing in console present of elements in row, column and square in boolean value .
     static void showDetection() {
         System.out.println("Square E: ");
-            for (int i = 1; i < 10; i++) {
-                System.out.print(i + ": ");
-                System.out.print(sudokuElementExistEsquare[i] + ", ");
-            }
-            System.out.println("\nRow E: ");
-            for (int i = 1; i < 10; i++) {
-                System.out.print(i + ": ");
-                System.out.print(sudokuElementExistErow[i] + ", ");
-            }
-            System.out.println("\nColumn E: ");
-            for (int i = 1; i < 10; i++) {
-                System.out.print(i + ": ");
-                System.out.print(sudokuElementExistEcolumn[i] + ", ");
+        for (int i = 1; i < 10; i++) {
+            System.out.print(i + ": ");
+            System.out.print(sudokuElementExistEsquare[i] + ", ");
+        }
+        System.out.println("\nSquare A:");
+        for (int i = 1; i < 10; i++) {
+            System.out.print(i + ": ");
+            System.out.print(sudokuElementExistAsquare[i] + ", ");
+        }
+
+        System.out.println("\nRow E: ");
+        for (int i = 1; i < 10; i++) {
+            System.out.print(i + ": ");
+            System.out.print(sudokuElementExistErow[i] + ", ");
+        }
+
+        System.out.println("\nRow A: ");
+        for (int i = 1; i < 10; i++) {
+            System.out.print(i + ": ");
+            System.out.print(sudokuElementExistArow[i] + ", ");
+        }
+
+        System.out.println("\nRow B: ");
+        for (int i = 1; i < 10; i++) {
+            System.out.print(i + ": ");
+            System.out.print(sudokuElementExistBrow[i] + ", ");
+        }
+        System.out.println("\nRow C: ");
+        for (int i = 1; i < 10; i++) {
+            System.out.print(i + ": ");
+            System.out.print(sudokuElementExistCrow[i] + ", ");
+        }
+        System.out.println("\nColumn D: ");
+        for (int i = 1; i < 10; i++) {
+            System.out.print(i + ": ");
+            System.out.print(sudokuElementExistDcolumn[i] + ", ");
+        }
+        System.out.println("\nColumn E: ");
+        for (int i = 1; i < 10; i++) {
+            System.out.print(i + ": ");
+            System.out.print(sudokuElementExistEcolumn[i] + ", ");
+        }
+        System.out.println("\nColumn F: ");
+        for (int i = 1; i < 10; i++) {
+            System.out.print(i + ": ");
+            System.out.print(sudokuElementExistFcolumn[i] + ", ");
         }
     }
-
-
 
 
     public static void main(String[] args) {
@@ -301,8 +346,10 @@ public class Main {
         //generateSudoku();
         //secondWayToGenerateSudoku();
         generate3FreeSquaresOfSudoku();
-        showSudoku();
+        generateOtherSquares();
         showDetection();
+        showSudoku();
+        //showDetection();
         //System.out.println(sudoku[0][0]);
         //sudokuElementExistAsquare[sudoku[0][0]] = true;
         //System.out.println(sudokuElementExistAsquare[sudoku[0][0]]);
