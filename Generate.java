@@ -33,6 +33,7 @@ public class Generate {
                 }
             }
         }
+
         // square I:
         for (int row = 6; row < 9; row++) {
             for (int column = 6; column < 9; column++) {
@@ -45,6 +46,7 @@ public class Generate {
                 }
             }
         }
+
     }
 
     static void generateOtherSquares() {
@@ -55,47 +57,51 @@ public class Generate {
                 for (int tmp = 1; tmp <= 99; tmp++) {
                     Variables.sudoku[row][column] = random.nextInt(9) + 1;
                     System.out.println("row = " + row + ", column = " + column + ", val = " + Variables.sudoku[row][column]);
-                    if (((Variables.sudokuElementExistBsquare[Variables.sudoku[row][column]] != true) && (Variables.sudokuElementExistDcolumn[Variables.sudoku[row][column]] != true)) && (Variables.sudokuElementExistArow[Variables.sudoku[row][column]] != true)) {
+                    if ((Variables.sudokuElementExistBsquare[Variables.sudoku[row][column]] != true) && (Variables.sudokuElementExistDcolumn[Variables.sudoku[row][column]] != true) && (Variables.sudokuElementExistArow[Variables.sudoku[row][column]] != true)) {
                         Detection.detectionElementOfSudoku(row, column);
-                        System.out.println("Element's saved, try next");
+                        System.out.println("Element's saved, try next\n");
                         break;
-                    } else if (((Variables.sudokuElementExistBsquare[Variables.sudoku[row][column]] != true) && (Variables.sudokuElementExistEcolumn[Variables.sudoku[row][column]] != true)) && (Variables.sudokuElementExistArow[Variables.sudoku[row][column]] != true)) {
+                    } else if ((Variables.sudokuElementExistBsquare[Variables.sudoku[row][column]] != true) && (Variables.sudokuElementExistEcolumn[Variables.sudoku[row][column]] != true) && (Variables.sudokuElementExistArow[Variables.sudoku[row][column]] != true)) {
                         Detection.detectionElementOfSudoku(row, column);
-                        System.out.println("Element's saved, try next");
+                        System.out.println("Element's saved, try next\n");
                         break;
-                    } else if (((Variables.sudokuElementExistBsquare[Variables.sudoku[row][column]] != true) && (Variables.sudokuElementExistFcolumn[Variables.sudoku[row][column]] != true)) && (Variables.sudokuElementExistArow[Variables.sudoku[row][column]] != true)) {
+                    } else if ((Variables.sudokuElementExistBsquare[Variables.sudoku[row][column]] != true) && (Variables.sudokuElementExistFcolumn[Variables.sudoku[row][column]] != true) && (Variables.sudokuElementExistArow[Variables.sudoku[row][column]] != true)) {
                         Detection.detectionElementOfSudoku(row, column);
-                        System.out.println("Element's saved, try next");
+                        System.out.println("Element's saved, try next\n");
                         break;
-                    } else if (((Variables.sudokuElementExistBsquare[Variables.sudoku[row][column]] != true) && (Variables.sudokuElementExistDcolumn[Variables.sudoku[row][column]] != true)) && (Variables.sudokuElementExistBrow[Variables.sudoku[row][column]] != true)) {
+                    } else if ((Variables.sudokuElementExistBsquare[Variables.sudoku[row][column]] != true) && (Variables.sudokuElementExistDcolumn[Variables.sudoku[row][column]] != true) && (Variables.sudokuElementExistBrow[Variables.sudoku[row][column]] != true)) {
                         Detection.detectionElementOfSudoku(row, column);
-                        System.out.println("Element's saved, try next");
+                        System.out.println("Element's saved, try next\n");
                         break;
-                    } else if (((Variables.sudokuElementExistBsquare[Variables.sudoku[row][column]] != true) && (Variables.sudokuElementExistEcolumn[Variables.sudoku[row][column]] != true)) && (Variables.sudokuElementExistBrow[Variables.sudoku[row][column]] != true)) {
+                    } else if ((Variables.sudokuElementExistBsquare[Variables.sudoku[row][column]] != true) && (Variables.sudokuElementExistEcolumn[Variables.sudoku[row][column]] != true) && (Variables.sudokuElementExistBrow[Variables.sudoku[row][column]] != true)) {
                         Detection.detectionElementOfSudoku(row, column);
-                        System.out.println("Element's saved, try next");
+                        System.out.println("Element's saved, try next\n");
                         break;
-                    } else if (((Variables.sudokuElementExistBsquare[Variables.sudoku[row][column]] != true) && (Variables.sudokuElementExistFcolumn[Variables.sudoku[row][column]] != true)) && (Variables.sudokuElementExistBrow[Variables.sudoku[row][column]] != true)) {
+                    } else if ((Variables.sudokuElementExistBsquare[Variables.sudoku[row][column]] != true) && (Variables.sudokuElementExistFcolumn[Variables.sudoku[row][column]] != true) && (Variables.sudokuElementExistBrow[Variables.sudoku[row][column]] != true)) {
                         Detection.detectionElementOfSudoku(row, column);
-                        System.out.println("Element's saved, try next");
+                        System.out.println("Element's saved, try next\n");
                         break;
-                    } else if (((Variables.sudokuElementExistBsquare[Variables.sudoku[row][column]] != true) && (Variables.sudokuElementExistDcolumn[Variables.sudoku[row][column]] != true)) && (Variables.sudokuElementExistCrow[Variables.sudoku[row][column]] != true)) {
+                    } else if ((Variables.sudokuElementExistBsquare[Variables.sudoku[row][column]] != true) && (Variables.sudokuElementExistDcolumn[Variables.sudoku[row][column]] != true) && (Variables.sudokuElementExistCrow[Variables.sudoku[row][column]] != true)) {
                         Detection.detectionElementOfSudoku(row, column);
-                        System.out.println("Element's saved, try next");
+                        System.out.println("Element's saved, try next\n");
                         break;
-                    } else if (((Variables.sudokuElementExistBsquare[Variables.sudoku[row][column]] != true) && (Variables.sudokuElementExistEcolumn[Variables.sudoku[row][column]] != true)) && (Variables.sudokuElementExistCrow[Variables.sudoku[row][column]] != true)) {
+                    } else if ((Variables.sudokuElementExistBsquare[Variables.sudoku[row][column]] != true) && (Variables.sudokuElementExistEcolumn[Variables.sudoku[row][column]] != true) && (Variables.sudokuElementExistCrow[Variables.sudoku[row][column]] != true)) {
                         Detection.detectionElementOfSudoku(row, column);
-                        System.out.println("Element's saved, try next");
+                        System.out.println("Element's saved, try next\n");
                         break;
-                    } else if (((Variables.sudokuElementExistBsquare[Variables.sudoku[row][column]] != true) && (Variables.sudokuElementExistFcolumn[Variables.sudoku[row][column]] != true)) && (Variables.sudokuElementExistCrow[Variables.sudoku[row][column]] != true)) {
+                    } else if ((Variables.sudokuElementExistBsquare[Variables.sudoku[row][column]] != true) && (Variables.sudokuElementExistFcolumn[Variables.sudoku[row][column]] != true) && (Variables.sudokuElementExistCrow[Variables.sudoku[row][column]] != true)) {
                         Detection.detectionElementOfSudoku(row, column);
-                        System.out.println("Element's saved, try next");
+                        System.out.println("Element's saved, try next\n");
                         break;
                     } else {
-                        if ((row >= 3 && row <= 5) && (column >= 3 && column <= 5))
-                            System.out.println("Element's saved, try next");
-                        column--;
-                        break;
+                        if ((row >= 0 && row <= 2) && (column >= 3 && column <= 5)) {
+                            System.out.println("Element isn't saved, try again");
+                            column--;
+                            break;
+                        } else {
+                            System.out.println("Error");
+                        }
+
                     }
                 }
             }

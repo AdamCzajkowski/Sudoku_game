@@ -13,8 +13,9 @@ public class Main {
         //generateSudoku();
         //secondWayToGenerateSudoku();
         Generate.generate3FreeSquaresOfSudoku();
+        //Show.showSudoku();
         Generate.generateOtherSquares();
-        Show.showDetection();
+        Show.showDetection('E');
         Show.showSudoku();
         //showDetection();
         //System.out.println(sudoku[0][0]);
